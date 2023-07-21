@@ -51,4 +51,4 @@ What you should learn from this project:
 
 ## Authors
 * **Zouhair BARTA** - [bartazouhair](https://github.com/bartazouhair)
-* **Hicham  ELMaa** - [HichamELMaa](https://github.com/HichamELMaa)
+* **Hicham  EL Maataoui** - [HichamELMaa](https://github.com/HichamELMaa)
