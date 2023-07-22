@@ -32,5 +32,9 @@ void heap_sort(int *array, size_t size);
 void radix_sort(int *array, size_t size);
 void bitonic_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-
+void cntSortLSD(int *arr, size_t sz, size_t ld);
+void heapIfeey(int *arr, size_t siz, size_t r, size_t sz);
+void MSubarray(int *ar, int *arr, size_t l, size_t m, size_t r);
+void MRecursion(int *ar, int *arr, size_t l, size_t r);
+int lnList(listint_t *z);
 #endif /*SORT_H*/
