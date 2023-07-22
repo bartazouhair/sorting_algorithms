@@ -1,35 +1,38 @@
 #include "sort.h"
 
 /**
-* shell_sort - It's a function sorts an array of integers using
-* the shell sort algorithm with Knuth sequence
-* @array: It's a the array of integers
-* @size: It's a size of the array
-*
-* Return: none because void
-*/
+ * shell_sort - It's a Sorts an array of integers in ascending order using Shell sort algorithm with Knuth sequence
+ * @array: It's a Array to be sorted
+ * @size: It's a Size of the array
+ */
 void shell_sort(int *array, size_t size)
 {
-size_t g = 0, y, z;
+size_t g = 1, z, y;
 int tp;
 
-if (size < 2)
+if (array == NULL || size < 2)
 return;
 
-while ((g = g * 3 + 1) < size)
-;
+while (g < size / 3)
+g = g * 3 + 1;
 
-g = (g - 1) / 3;
-
-for (; g > 0; g = (g - 1) / 3)
+while (g > 0)
 {
-for (z = g; z < size; i++)
+for (z = g; z < size; z++)
 {
 tp = array[z];
-for (y = z; y >= g && tp <= array[y - g]; y -= g)
+y = z;
+
+while (y >= g && array[y - g] > tp)
+{
 array[y] = array[y - g];
+y -= g;
+}
+
 array[y] = tp;
 }
+
 print_array(array, size);
+g /= 3;
 }
 }
