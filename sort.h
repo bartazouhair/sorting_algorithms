@@ -37,4 +37,5 @@ void heapIfeey(int *arr, size_t siz, size_t r, size_t sz);
 void MSubarray(int *ar, int *arr, size_t l, size_t m, size_t r);
 void MRecursion(int *ar, int *arr, size_t l, size_t r);
 int lnList(listint_t *z);
+void mg(int *arr, int *l, size_t lz, int *r, size_t rz);
 #endif /*SORT_H*/
