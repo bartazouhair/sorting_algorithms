@@ -1,77 +1,78 @@
-#include "sort.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+void print_array(const int *array, size_t size);  /* Forward declaration */
 
 /**
- * merge_sort - It's a sorts an array with the Merge Sort algorithm
- * @array: It's a array of ints to sort
- * @size: It's a size of the array
+ * mg - It's a Merges two subarrays into one sorted array
+ * @arr: It's a Pointer to the original array
+ * @l: It's a Pointer to the left subarray
+ * @lz: It's a Size of the left subarray
+ * @r: It's a Pointer to the right subarray
+ * @rz: It's a Size of the right subarray
+ */
+void mg(int *arr, int *l, size_t lz, int *r, size_t rz)
+{
+size_t q = 0, y = 0, z = 0;
+size_t s = lz + rz;
+int *tp = malloc(sizeof(int) * s);
+
+printf("Merging...\n[left]: ");
+print_array(l, lz);
+printf("[right]: ");
+print_array(r, rz);
+
+printf("[Done]: ");
+while (q < lz && y < rz)
+{
+if (l[q] <= r[y])
+tp[z++] = l[q++];
+else
+tp[z++] = r[y++];
+}
+
+while (q < lz)
+tp[z++] = l[q++];
+
+while (y < rz)
+tp[z++] = r[y++];
+
+for (q = 0; q < s; q++)
+{
+arr[q] = tp[q];
+if (q < s - 1)
+printf("%d, ", array[q]);
+else
+printf("%d\n", array[q]);
+}
+
+free(tp);
+}
+
+/**
+ * merge_sort - It's a Sorts an array of integers in ascending order using
+ *              the merge sort algorithm
+ * @array: It's a Pointer to the array to be sorted
+ * @size: It's a Size of the array
+ *
+ * * Description: It's So, Merge and sort
  */
 void merge_sort(int *array, size_t size)
 {
-int *a;
+size_t m;
+int *l, *r;
 
-if (!array || size < 2)
+if (size < 2 || array == NULL)
 return;
 
-a = malloc(sizeof(int) * size);
+m = size / 2;
+l = array;
+r = array + m;
 
-MRecursion(a, array, 0, size);
-free(arr);
-}
+merge_sort(l, m);
+merge_sort(r, size - m);
 
-/**
- * MRecursion - It's a recursive function that merge sorts an array
- * @ar: It's a copy array
- * @arr: It's totaly array to merge
- * @l: It's a index of the left element
- * @r: It's a index of the right element
- */
-void MRecursion(int *ar, int *arr, size_t l, size_t r)
-{
-size_t m;
+mg(array, l, m, r, size - m);
 
-if (r - l > 1)
-{
-m = (r - l) / 2 + l;
-MRecursion(ar, arr, l, m);
-MRecursion(ar, arr, m, r);
-MRecursion(ar, arr, l, m, r);
-}
-}
-
-/**
- * MSubarray - It's a merges subarrays
- * @ar: It's a copy array
- * @arr: It's totaly array to merge
- * @l: It's a index of the left element
- * @m: It's a index of the middle element
- * @r: It's a index of the right element
- */
-void MSubarray(int *ar, int *arr, size_t l, size_t m, size_t r)
-{
-size_t q, g, z = 0;
-
-printf("Merging...\n");
-printf("[left]: ");
-print_array(arr + l, m  - l);
-printf("[right]: ");
-print_array(arr + m, r - m);
-
-for (q = l, g = m; q < m && g < r; z++)
-{
-if (arr[q] < arr[q])
-ar[z] = arr[q++];
-else
-ar[z] = arr[g++];
-}
-
-while (q < m)
-ar[z++] = arr[q++];
-while (g < r)
-ar[z++] = arr[g++];
-
-for (z = l, q = 0; z < r; z++)
-arr[z] = ar[q++];
-
-printf("[Done]: ");
-print_array(arr + l, r - l);
+printf("\n");
 }
