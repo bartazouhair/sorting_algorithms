@@ -1,51 +1,61 @@
 #include "sort.h"
+
 /**
- * swapy_two - It's a swap to doubly linked list elements
- * @aa: It's the left element
- * @bb: It's the right element
- * @lt: It's a all doubly linked list
- * Return: pointer to a element (actual)
+ * lnList - It's a returns the length of a linked list
+ * @z: It's pointer to the list
+ *
+ * Return: Returrn a length of list
  */
-listint_t *swapy_tow(listint_t *aa, listint_t *bb, listint_t **lt)
+int lnList(listint_t *z)
 {
-if (aa->prev)
-(aa->prev)->next = bb;
-else
-*lt = bb, bb->prev = NULL;
-if ((bb->next))
-(bb->next)->prev = aa;
-bb->prev = aa->prev;
-aa->prev = bb;
-aa->next = bb->next;
-bb->next = aa;
-return (aa);
+int ln = 0;
+
+while (z)
+{
+ln++;
+z = z->next;
 }
+return (ln);
+}
+
 /**
- * insertion_sort_list - It's a bsorts list in ascending order
- * @list: It's only a doubly linked list of integers to be sorted
+ * insertion_sort_list - sorts a linked list with the Insert Sort algorithm
+ * @list: double pointer to the list to sort
  */
 void insertion_sort_list(listint_t **list)
 {
-listint_t *actl;
-listint_t *prev, *back;
+listint_t *c = NULL, *o = NULL;
+listint_t *t = NULL, *th = NULL, *f = NULL;
 
-if (!list || !(*list) || !(*list)->next)
+if (!list || !(*list) || lnList(*list) < 2)
 return;
 
-actl = (*list)->next;
-while (actl)
+c = *list;
+
+while (c)
 {
-prev = actl->prev;
-back = actl;
-while (back->prev && back->n < prev->n)
+if (c->prev && c->n < c->prev->n)
 {
-actl = swapy_tow(prev, back, list);
+o = c->prev->prev;
+t = c->prev;
+th = c;
+f = c->next;
+
+t->next = f;
+if (f)
+f->prev = t;
+th->next = t;
+th->prev = o;
+if (o)
+o->next = th;
+else
+*list = th;
+t->prev = th;
+c = *list;
 print_list(*list);
-if (!back->prev)
-break;
-prev = back->prev;
+continue;
 }
-actl = actl->next;
-prev = prev->next;
+else
+c = c->next;
 }
 }
