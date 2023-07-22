@@ -1,7 +1,8 @@
 #include "sort.h"
 
 /**
- * shell_sort - It's a Sorts an array of integers in ascending order using Shell sort algorithm with Knuth sequence
+ * shell_sort  - It's a Sorts an array of integers in ascending
+ *                   order using Shell sort algorithm with Knuth sequence
  * @array: It's a Array to be sorted
  * @size: It's a Size of the array
  */
