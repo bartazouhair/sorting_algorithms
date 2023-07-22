@@ -1,31 +1,31 @@
 #include "sort.h"
+
 /**
- * selection_sort - It's a sorts an array of integers in ascending order
- * @array: It's the element to be sorted
- * @size: It's only the size of array
+ * selection_sort - It's to sorts an array for the selection sort algorithm
+ * @array: Ir's array sorting
+ * @size: It's obly size for the array;
  */
 void selection_sort(int *array, size_t size)
 {
-unsigned int y, w;
+unsigned int y, z, m;
+
+register int tp;
 
 if (size < 2)
 return;
 
 for (y = 0; y < size; y++)
 {
-unsigned int z = y;
-int tem = array[y];
-
-for (w = y + 1; w < size; w++)
+m = y;
+for (z = y + 1; z < size; z++)
 {
-if (array[y] < tem)
-tem = array[w], z = w;
+if (array[z] < array[m])
+m = z;
 }
-if (z != y)
-{
-array[z] = array[y];
-array[y] = tem;
+tp = array[y];
+array[y] = array[m];
+array[m] = tp;
+if (y != m)
 print_array(array, size);
-}
 }
 }
