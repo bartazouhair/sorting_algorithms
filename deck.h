@@ -42,5 +42,7 @@ struct deck_node_s *next;
 } deck_node_t;
 
 void sort_deck(deck_node_t **deck);
-
+int cardValue(deck_node_t *nd);
+int _itstrcmp(const char *c1, const char *c2);
+size_t listLenDeck(deck_node_t *lst);
 #endif /* DECK_H */
