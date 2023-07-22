@@ -9,7 +9,7 @@ What you should learn from this project:
 * What is a stable sorting algorithm
 
 ### [00. Bubble sort](./0-bubble_sort.c)
-* - Write a function  sorts an array of integers in ascending order using the Bubble sort algorithm   
+* - Write a function that  sorts an array of integers in ascending order using the Bubble sort algorithm   
 
 ### [01. Insertion sort](./1-insertion_sort_list.c)
 * - Write a function that sorts a doubly linked list of integers in ascending order using the Insertion sort algorithm
