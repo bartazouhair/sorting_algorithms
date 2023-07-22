@@ -1,72 +1,60 @@
 #include "sort.h"
 
-void swapy_intsy(int *x, int *z);
-void maxy_heapify(int *arr, size_t sz, size_t bs, size_t rt);
-void heap_sort(int *array, size_t size);
 /**
- * swapy_intsy - It's a Swap two integers in an array.
- * @x: It's a The first integer to swap.
- * @z: It's a The second integer to swap.
- */
-void swapy_intsy(int *x, int *z)
-{
-int tp;
-
-tp = *x;
-*x = *z;
-*z = tp;
-}
-/**
- * maxy_heapify - It's a Turn a binary tree into a complete binary heap.
- * @arr: It's a An array of integers representing a binary tree.
- * @sz: It's a The size of the array/tree.
- * @bs: It's a The index of the base row of the tree.
- * @rt: It's a The root node of the binary tree.
- */
-void maxy_heapify(int *arr, size_t sz, size_t bs, size_t rt)
-{
-size_t l, r, g;
-
-l = 2 * rt + 1;
-r = 2 * rt + 2;
-g = rt;
-
-if (l < bs && arr[l] > arr[g])
-g = l;
-if (r < bs && arr[r] > arr[g])
-g = r;
-
-if (g != rt)
-{
-swapy_intsy(arr + rt, arr + g);
-print_array(arr, sz);
-maxy_heapify(arr, sz, bs, g);
-}
-}
-
-/**
- * heap_sort - It's a Sort an array of integers in ascending
- *             order using the heap sort algorithm.
- * @array: It's a An array of integers.
- * @sz: It's The size of the array.
- *
- * Description: It's a For Implements the sift-down heap sort
- * algorithme. So Prints the array after each swap.
+ * heap_sort - It's a sorts an array following the Heap sort algorithm
+ * @array: It's a array of ints to sort
+ * @size: It's a size of the array to sort
  */
 void heap_sort(int *array, size_t size)
 {
-int p;
+int q;
+int tp;
 
-if (array == NULL || size < 2)
+if (size < 2)
 return;
 
-for (p = (size / 2) - 1; p >= 0; p--)
-maxy_heapify(array, size, size, p);
+for (q = size / 2 - 1; q >= 0; q--)
+heapIfeey(array, size, (size_t)q, size);
 
-for (p = size - 1; p > 0; p--)
+for (q = size - 1; q >= 0; q--)
 {
-swapy_intsy(array, array + p);
+tp = array[q];
+array[q] = array[0];
+array[0] = tp;
+if (q != 0)
 print_array(array, size);
-maxy_heapify(array, size, p, 0);
+heapIfeey(array, (size_t)q, 0, size);
+}
+}
+
+/**
+ * heapIfeey - It's a turns an array in a heap tree
+ * @arr: It's a array to turn into heap
+ * @siz: Its' a size of the subtree
+ * @r: index of the subtree in the heap
+ * @sz: size of the whole array
+ */
+void heapIfeey(int *arr, size_t siz, size_t r, size_t sz)
+{
+size_t mx, l, rg;
+int tp;
+
+mx = r;
+l = (r * 2) + 1;
+rg = (r * 2) + 2;
+
+if (l < siz && arr[l] > arr[mx])
+mx = l;
+
+if (rg < siz && arr[rg] > arr[mx])
+mx = rg;
+
+if (mx != r)
+{
+tp = arr[r];
+arr[r] = arr[mx];
+arr[mx] = tp;
+print_array(arr, sz);
+heapIfeey(arr, siz, mx, sz);
 }
 }
