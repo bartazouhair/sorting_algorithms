@@ -73,10 +73,10 @@ void my_p(int *arr, size_t lb, size_t ub, int *cp)
 	{
 		md = (ub + lb - 1) / 2;
 
-		my_p(array, lb, md, cp);
-		my_p(array, md + 1, ub, cp);
+		my_p(arr, lb, md, cp);
+		my_p(arr, md + 1, ub, cp);
 
-		my_jp(array, lb, ub, md, cp);
+		my_jp(arr, lb, ub, md, cp);
 	}
 }
 
