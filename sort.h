@@ -38,4 +38,7 @@ void MSubarray(int *ar, int *arr, size_t l, size_t m, size_t r);
 void MRecursion(int *ar, int *arr, size_t l, size_t r);
 int lnList(listint_t *z);
 void mg(int *arr, int *l, size_t lz, int *r, size_t rz);
+void my_p(int *arr, size_t lb, size_t ub, int *cp);
+void my_jp(int *arr, size_t ml, size_t mht, size_t md, int *cp);
+void mppe(int *arr, const char *mt, size_t ml, size_t mht);
 #endif /*SORT_H*/

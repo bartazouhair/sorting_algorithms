@@ -1,84 +1,103 @@
 #include "sort.h"
 
-void mg(size_t il, size_t md, size_t mh, int *d, int *c);
-void mp(size_t ml, size_t mh, int *ay, int *cp);
 /**
- * merge_sort - It's A function that sorts an array using merge
- * @array: It's a The array
- * @size: It's a size of the array
- * Return: Rien because is void
+ * mppe - prints array value
+ *
+ * @arr: It's a array printed
+ * @mt: my_text printed values
+ * @ml: low boun
+ * @mht: up boun
+ */
+void mppe(int *arr, const char *mt,
+		size_t ml, size_t mht)
+{
+	size_t q;
+	char *sp = "";
+
+	printf("[%s]: ", mt);
+	for (q = ml; q <= mht; q++)
+	{
+		printf("%s%d", sp, arr[q]);
+		sp = ", ";
+	}
+	printf("\n");
+}
+/**
+ * my_jp - It's a join value sort in the array
+ * parsed
+ *
+ * @arr: It's a array sorted
+ * @ml: It's a start index array passe
+ * @mht: It's a end index array passed
+ * @md: It's a mid split array
+ * @cp: It's a array sorte values
+ */
+void my_jp(int *arr, size_t ml, size_t mht,
+		size_t md, int *cp)
+{
+	size_t mh = md + 1, mdex, ms = ml, q;
+
+	printf("Merging...\n");
+	mppe(arr, "left", ml, md);
+	mppe(arr, "right", md + 1, mht);
+
+	for (mdex = ml; mdex <= mht; mdex++)
+	{
+		if ((ms <= md && arr[ms] <= arr[mh]) ||
+				mh > mht)
+			cp[mdex] = arr[ms++];
+		else
+			cp[mdex] = arr[mh++];
+	}
+
+	for (q = ml; q <= mht; q++)
+		arr[q] = cp[q];
+
+	mppe(arr, "Done", ml, mht);
+}
+
+/**
+ * my_p - recur merge sort et sort the
+ * giv array
+ *
+ * @arr: It's a array sorted
+ * @lb: It's a low boun
+ * @ub: Its' a up boun
+ * @cp: Its' a array store values
+ */
+void my_p(int *arr, size_t lb, size_t ub, int *cp)
+{
+	size_t md;
+
+	if (lb < ub)
+	{
+		md = (ub + lb - 1) / 2;
+
+		my_p(array, lb, md, cp);
+		my_p(array, md + 1, ub, cp);
+
+		my_jp(array, lb, ub, md, cp);
+	}
+}
+
+/**
+ * merge_sort - It's a appli the merge sort
+ * algorithm sort an array integers
+ *
+ * @array: It's a array sorted
+ * @size: It's a size array
  */
 void merge_sort(int *array, size_t size)
 {
-size_t w;
-int *p = NULL;
+	int *mc;
 
-if (!array || size < 2)
-return;
-p = malloc(sizeof(int) * size);
-if (!p)
-return;
-for (w = 0; w < size; w++)
-p[w] = array[w];
-mp(0, size, array, p);
-free(p);
-}
+	if (!array || size < 2)
+		return;
 
-/**
- * mg - It's A function that prints subarrays.
- * @il: It's a index lower
- * @md: It's a index midlle
- * @mh: It'a index higher
- * @d: It's a Data destination
- * @c: It's a input data
- * Return: rien because its void
- */
-void mg(size_t il, size_t md, size_t mh, int *d, int *c)
-{
-size_t z = 0, q = 0, w = 0;
+	mc = malloc(sizeof(int) * size);
+	if (!mc)
+		return;
 
-printf("Merging...\n");
-printf("[left]: ");
-print_array(c + il, md - il);
-printf("[right]: ");
-print_array(c + md, mh - md);
-z = il;
-q = md;
-w = il;
-for (; w < mh; w++)
-{
-if (z < md && (q >= mh || c[z] <= c[q]))
-{
-d[w] = c[z];
-z++;
-}
-else
-{
-d[w] = c[q];
-q++;
-}
-}
-printf("[Done]: ");
-print_array(d + il, mh - il);
-}
-/**
- * mp - It's A funtion that separet array
- * @ml: index loweer
- * @mh: index higher
- * @ay: The array
- * @cp: The copy of arry
- * Return: Rien parceque it's void
- */
-void mp(size_t ml, size_t mh, int *ay, int *cp)
-{
-size_t r = 0;
-
-if (mh - ml < 2)
-return;
-r = (ml + mh) / 2;
-mp(ml, r, ay, cp);
-mp(r, mh, ay, cp);
-mg(ml, r, mh, ay, cp);
-for (r = ml; r < mh; r++)
-cp[r] = ay[r];
+	my_p(array, 0, size - 1, mc);
+	free(mc);
 }
