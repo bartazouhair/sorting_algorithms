@@ -1,4 +1,4 @@
-## C - Sorting algorithms & Big O
+## C - Sorting Algorithms & Big O
 
 ## Description
 What you should learn from this project:
