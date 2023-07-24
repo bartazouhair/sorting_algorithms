@@ -1,7 +1,7 @@
 ## Project: C - Sorting Algorithms & Big O
 
 ## Description
-What you should learn from this project:
+What you should lear from this project:
 
 * At least four different sorting algorithms
 * What is the Big O, and how to evaluate the time complexity of an algorithm
